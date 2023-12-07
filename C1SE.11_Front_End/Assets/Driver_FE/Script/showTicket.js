@@ -29,10 +29,10 @@ axios.get(`http://localhost:9000/ticket/getTicket/${ticketId}`)
       fmave.value = data.ticket_id;
       fname.value = data.customer_name;
       fsdt.value = data.phone_number;
-      lpartner.value = data.partner_name;
-      lngaydat.value = data.departure_datetime;
+      // lpartner.value = data.partner_name;
+      lngaydat.value = data.departure_date;
       lgiuongso.value = data.seat_number;
-      lgiave.value = data.price;
+      lgiave.value = data.price_trip;
       ltinhtrangve.value = data.status_ ? "Đã xuất vé" : "Chưa xuất vé";
     } else {
       // Xử lý trường hợp không tìm thấy vé

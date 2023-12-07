@@ -3,6 +3,10 @@ const decreaseDiv = document.getElementById('decrease-btn');
 const increaseDiv = document.getElementById('increase-btn');
 const quantitySpan = document.getElementById('quantity');
 
+let origin = ''
+let destination = ''
+let start_date = ''
+
 let quantity = 1; // Số lượng ban đầu
 
 decreaseDiv.addEventListener('click', () => {
@@ -193,10 +197,10 @@ function myFunctioncheckbox() {
 }
 
 let seat = [];
-const price = 480000;
+// const price = 480000;
 let price_text = document.querySelectorAll(".price_text");
 
-function selectSeat(e, seatNumber) {
+function selectSeat(e, seatNumber, price) {
   const isChecked = e.target.checked;
   if (isChecked) {
     seat.push(seatNumber); // Thêm seatNumber vào mảng nếu checkbox được chọn
@@ -212,84 +216,8 @@ function selectSeat(e, seatNumber) {
   console.log(seat)
 }
 
-const apiUrl = 'http://localhost:9000/coaches/get/getCoach?coach_id=Coach1&trip_id=Trip1';
 
-axios.get(apiUrl)
-  .then(response => {
-    const tickets = response.data.data;
-    console.log(tickets);
-
-    // Function to create and append seat elements
-    function createSeatElement(seatNumber, isBooked, isChosen) {
-      const label = document.createElement('label');
-      label.classList.add('seat-label');
-
-      const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
-      checkbox.classList.add('seat-checkbox');
-      checkbox.disabled = isBooked;
-      checkbox.checked = isChosen;
-      checkbox.onclick = (e) => {
-        selectSeat(e, seatNumber)
-      }
-
-      const seatImage = document.createElement('div');
-      seatImage.classList.add('seat-image');
-      seatImage.style.height = '40px'
-      seatImage.style.width = '30px'
-      seatImage.style.backgroundSize = '30px'
-      seatImage.style.backgroundRepeat = 'no-repeat'
-      if (isBooked) {
-        seatImage.style.backgroundImage = 'url("/C1SE.11_Front_End/Assets/Customer_FE/image/Content/ListCoach/chair_off.png")';
-      } else if (isChosen) {
-        seatImage.style.backgroundImage = 'url("/C1SE.11_Front_End/Assets/Customer_FE/image/Content/ListCoach/chair_get.png")';
-      } else {
-        seatImage.style.backgroundImage = 'url("/C1SE.11_Front_End/Assets/Customer_FE/image/Content/ListCoach/chair_on.png")';
-      }
-
-      // http://127.0.0.1:5500/C1SE.11_Front_End/Assets/Customer_FE/image/Content/ListCoach/HoangLong(4).jpg
-      label.appendChild(checkbox);
-      label.appendChild(seatImage);
-
-      return label;
-    }
-
-    // Initialize seat elements on both floors
-    const bedUnder = document.getElementById('bedUnder');
-    const bedUpper = document.getElementById('bedUpper');
-
-    // Assuming A, B, C, D are your seat categories
-    ['A', 'B', 'C', 'D'].forEach(category => {
-      for (let i = 1; i <= 6; i++) {
-        const seatNumber = category + i;
-        const isBooked = tickets.some(ticket => ticket.seat_number === seatNumber);
-        // You can add logic to check if the seat is currently chosen
-        const isChosen = false;
-
-        const seatElement = createSeatElement(seatNumber, isBooked, isChosen);
-
-        if (category === 'A' || category === 'B') {
-          bedUnder.appendChild(seatElement);
-        } else {
-          bedUpper.appendChild(seatElement);
-        }
-
-        // If it's the last seat in the category, add a line break
-        if (i === 6) {
-          const br = document.createElement('br');
-          if (category === 'A' || category === 'B') {
-            bedUnder.appendChild(br);
-          } else {
-            bedUpper.appendChild(br);
-          }
-        }
-      }
-    });
-  })
-  .catch(error => {
-    console.error('Error fetching data:', error);
-  });
-
+let selectedTrip = {}
 
 
 let trip_id = 'Trip1'
@@ -335,32 +263,32 @@ nolmalButton.addEventListener('click', function () {
   const departure_datetime__ = document.getElementById('departure_datetime');
   const booking_date_ = document.getElementById('booking_date');
   const amount_ = document.getElementById('amount');
-  
+
 
   // Duyệt qua từng phần tử radio
   destinationInputs.forEach(input => {
-      if (input.checked) {
-        destination_point = input.nextElementSibling.textContent.trim();
-      }
+    if (input.checked) {
+      destination_point = input.nextElementSibling.textContent.trim();
+    }
   });
   departure_pointInputs.forEach(input => {
-      if (input.checked) {
-        departure_point = input.nextElementSibling.textContent.trim();
-      }
+    if (input.checked) {
+      departure_point = input.nextElementSibling.textContent.trim();
+    }
   });
 
-  let origin = document.getElementById('origin')
-  let destination = document.getElementById('destination')
+  let origin = document.getElementById('origin_')
+  let destination = document.getElementById('destination_')
 
-  origin.value = departure_point;
-  destination.value = departure_point;
-  departure_datetime__.value  = departure_datetime_
+  origin.value = selectedTrip.origin;
+  destination.value = selectedTrip.destination;
+  departure_datetime__.value = selectedTrip.departure_date
   booking_date_.value = booking_date
-  amount_.value = price * seat.length
+  amount_.value = selectedTrip.price * seat.length
 
 
 
-  
+
   setTimeout((() => {
     formPayment.style.display = 'flex';
   }), 2000)
@@ -377,13 +305,10 @@ payBackButton.addEventListener('click', function () {
 async function getTicket() {
   const data = {
     trip_id: trip_id,
-    partner_id: partner_id,
     customer_id: customer_id,
-    coach_id: coach_id,
-    departure_datetime: departure_datetime,
-    arrival_datetime: arrival_datetime,
+    departure_date: selectedTrip.departure_date,
     seat: seat, // Thay thế bằng danh sách ghế bạn muốn đặt
-    price: price, // Giá vé
+    price: selectedTrip.price, // Giá vé
   };
 
   // Endpoint
@@ -403,38 +328,268 @@ async function getTicket() {
 async function completed() {
   const data = {
     ticket_id: ticket_id_arr,
-    customer_id: customer_id,
-    origin: departure_point,
-    destination: destination_point,
-    departure_datetime: departure_datetime,
+    origin: selectedTrip.origin,
+    destination: selectedTrip.destination,
+    departure_datetime: selectedTrip.departure_date,
     booking_date: booking_date,
     payment_date: booking_date,
-    amount: 48.00,
+    amount: selectedTrip.price,
     payment_method: 'Credit Card',
-};
+  };
 
-// Gửi yêu cầu POST đến API
-axios.post('http://localhost:9000/payment/store', data)
+  // Gửi yêu cầu POST đến API
+  axios.post('http://localhost:9000/payment/store', data)
     .then(response => {
-        if (response.status === 200) {
-            const qrImages = response.data.data;
+      if (response.status === 200) {
+        const qrImages = response.data.data;
 
-            // Chọn container để hiển thị hình ảnh QR
-            const qrContainer = document.getElementById('qr_container');
+        // Chọn container để hiển thị hình ảnh QR
+        const qrContainer = document.getElementById('qr_container');
 
-            // Lặp qua danh sách hình ảnh QR và hiển thị chúng trong container
-            qrImages.forEach(qrImageUrl => {
-                const qrImage = document.createElement('img');
-                qrImage.src = qrImageUrl;
+        // Lặp qua danh sách hình ảnh QR và hiển thị chúng trong container
+        qrImages.forEach(qrImageUrl => {
+          const qrImage = document.createElement('img');
+          qrImage.src = qrImageUrl;
 
-                // Thêm hình ảnh vào container
-                qrContainer.appendChild(qrImage);
-            });
-        } else {
-            console.error('Failed to get QR images.');
-        }
+          // Thêm hình ảnh vào container
+          qrContainer.appendChild(qrImage);
+        });
+      } else {
+        console.error('Failed to get QR images.');
+      }
     })
     .catch(error => {
-        console.error('Error:', error);
+      console.error('Error:', error);
     });
 }
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  console.log('loader')
+  const query = new URLSearchParams(window.location.search)
+  origin = query.get('origin');
+  destination = query.get('destination');
+  start_date = query.get('start_date');
+
+
+  console.log({
+    origin,
+    destination,
+    start_date,
+  })
+
+  let origin_text = document.getElementById('origin')
+  let destination_text = document.getElementById('destination')
+  let start_date_text = document.getElementById('start_date')
+  let destination_banner = document.getElementById('destination_banner')
+
+  origin_text.innerHTML = origin
+  destination_text.innerHTML = destination
+  start_date_text.innerHTML = start_date
+  destination_banner.innerHTML = destination
+
+  loaddTrip(origin, destination, start_date)
+
+  let form_allbuy = document.querySelector('.form_allbuy')
+  let closeBtn = document.querySelector('.close_model')
+
+  closeBtn.addEventListener('click', () => {
+    form_allbuy.classList.toggle('hide');
+    const bedUnder = document.getElementById('bedUnder');
+    bedUnder.innerHTML = ""
+    const bedUpper = document.getElementById('bedUpper');
+    bedUpper.innerHTML = ""
+    seat = []
+    let price_text = document.querySelectorAll(".price_text");
+    price_text.forEach(price => {
+      price.innerHTML = "0"
+    });
+  })
+
+
+
+});
+
+function datVe(trip_id,origin, destination, departure_date ,price) {
+  let form_allbuy = document.querySelector('.form_allbuy')
+  form_allbuy.classList.toggle('hide')
+  console.log("price", price)
+  selectedTrip= {
+    trip_id,
+    origin,
+    destination, 
+    departure_date,
+    price
+  }
+  console.log("selected", selectedTrip);
+
+  const apiUrl = `http://localhost:9000/coaches/get/getCoach?trip_id=${trip_id}`;
+
+axios.get(apiUrl)
+  .then(response => {
+    const tickets = response.data.data;
+    console.log(tickets);
+
+    // Function to create and append seat elements
+    function createSeatElement(seatNumber, isBooked, isChosen) {
+      const label = document.createElement('label');
+      label.classList.add('seat-label');
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.classList.add('seat-checkbox');
+      checkbox.disabled = isBooked;
+      checkbox.checked = isChosen;
+      checkbox.onclick = (e) => {
+        selectSeat(e, seatNumber, price)
+      }
+
+      const seatImage = document.createElement('div');
+      seatImage.classList.add('seat-image');
+      seatImage.style.height = '40px'
+      seatImage.style.width = '30px'
+      seatImage.style.backgroundSize = '30px'
+      seatImage.style.backgroundRepeat = 'no-repeat'
+      if (isBooked) {
+        seatImage.style.backgroundImage = 'url("/C1SE.11_Front_End/Assets/Customer_FE/image/Content/ListCoach/chair_off.png")';
+      } else if (isChosen) {
+        seatImage.style.backgroundImage = 'url("/C1SE.11_Front_End/Assets/Customer_FE/image/Content/ListCoach/chair_get.png")';
+      } else {
+        seatImage.style.backgroundImage = 'url("/C1SE.11_Front_End/Assets/Customer_FE/image/Content/ListCoach/chair_on.png")';
+      }
+
+      // http://127.0.0.1:5500/C1SE.11_Front_End/Assets/Customer_FE/image/Content/ListCoach/HoangLong(4).jpg
+      label.appendChild(checkbox);
+      label.appendChild(seatImage);
+
+      return label;
+    }
+
+    // Initialize seat elements on both floors
+    const bedUnder = document.getElementById('bedUnder');
+    
+    const bedUpper = document.getElementById('bedUpper');
+    
+    // Assuming A, B, C, D are your seat categories
+    ['A', 'B', 'C', 'D'].forEach(category => {
+      for (let i = 1; i <= 6; i++) {
+        const seatNumber = category + i;
+        const isBooked = tickets.some(ticket => ticket.seat_number === seatNumber);
+        // You can add logic to check if the seat is currently chosen
+        const isChosen = false;
+
+        const seatElement = createSeatElement(seatNumber, isBooked, isChosen);
+
+        if (category === 'A' || category === 'B') {
+          bedUnder.appendChild(seatElement);
+        } else {
+          bedUpper.appendChild(seatElement);
+        }
+
+        // If it's the last seat in the category, add a line break
+        if (i === 6) {
+          const br = document.createElement('br');
+          if (category === 'A' || category === 'B') {
+            bedUnder.appendChild(br);
+          } else {
+            bedUpper.appendChild(br);
+          }
+        }
+      }
+    });
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
+
+}
+
+async function loaddTrip(origin, destination, start_date) {
+  axios.get(`http://localhost:9000/trip/search?origin=${origin}&destination=${destination}&departure_date=${start_date}`)
+    .then(response => {
+      if (response.status === 200) {
+        const res_data = response.data.data.recordset;
+
+        //Hiển thị điểm đến
+        // const content_list = document.getElementById('content_list');
+        // content_list.innerHTML=""
+
+        // res_data.forEach(trip => {
+        //   console.log(trip)
+        //   content_list.innerHTML += `
+        //   <div id="content_list" class="contentlist_welecome">
+        //     <p>Welcome to ${trip.destination}</p>
+        //   </div>
+
+        //   `
+        // });
+
+        // Chọn container để hiển thị hình ảnh QR
+        const tripList = document.getElementById('tripList');
+        tripList.innerHTML = ""
+
+        // Lặp qua danh sách hình ảnh QR và hiển thị chúng trong container
+        res_data.forEach(trip => {
+          console.log(trip)
+          tripList.innerHTML += `
+      <div class="coach_partner">
+                    <div class="start_partner_element">
+                            <img src="${trip.image_avatar}" alt="Xe">
+                        </div>
+                        <div class="center_partner_element">
+                            <div class="infor_coach_partner">
+                                <div class="form_coach">
+                                    <div class="name_coach">
+                                        <span>${trip.trip_name}</span>
+                                    </div>
+                                    <div class="acccess_coach">
+                                        <span><i class="ti-star"></i>  4.2</span>
+                                    </div>
+                                </div>
+                                <span style="font-size: 16px; color: #848181;">Xe giường nằm ${trip.seat_capacity} chỗ</span>
+                            </div>
+                            <div class="infor_start_trip">
+                                <div class="start_trip_icon non_trip">
+                                    <img src="../image/Content/ListCoach/start (2).png" alt="start">
+                                    <div class="form_start">
+                                      <span id="start_time">${trip.departure_date.split(" ")[1]}</span>
+                                      <div style="width: 10px; height: 10px; background-color: #575555; border-radius: 50%;"></div>    
+                                    </div>
+                                    <span id="start_location">${trip.origin}</span>
+                                </div>
+                                <div class="time_start_trip non_trip">
+                                    <img src="../image/Content/ListCoach/down-arrows.png" alt="Khoang">
+                                  
+                                </div>
+                                <div class="end_trip_icon non_trip">
+                                    <img src="../image/Content/ListCoach/end.png" alt="start">
+                                    <div class="form_start">
+                                        <span id="start_time">${trip.arrival_datetime.split(" ")[1]}</span>
+                                        <div style="width: 10px; height: 10px; background-color: #575555; border-radius: 50%;"></div>    
+                                    </div>
+                                    <span id="start_location">${trip.destination}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="end_partner_element">
+                            <div class="container_price">
+                                <h1>Giá vé : <span>${trip.price_trip}đ</span></h1>
+                            </div>
+                            <div class="button_buy" onclick="datVe('${trip.trip_id}','${trip.origin}','${trip.destination}', '${trip.departure_date}', ${trip.price_trip})">
+                                Đặt vé
+                            </div>
+                        </div>
+                    </div>
+            `
+
+        });
+      } else {
+        console.error('Failed to getTrip');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
+// ------------------------Close_buy---------------------
+

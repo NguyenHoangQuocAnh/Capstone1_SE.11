@@ -471,14 +471,17 @@
     align-items: center;
 }
 .booking_tickets{
-    width: 100%;
-    height: auto;
+    border-radius: 5px;
+    width: 60%;
+    background-color: #fff;
+    height: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
     border: 1.5px solid #E3E3E3;
     box-shadow: 5px 5px 8px rgba(105, 105, 105, 0.3);
-    display: none;
+    padding-top: 20px;
+    /* display: none; */
 }
 .title_booking{
     width: 90%;
@@ -1369,7 +1372,7 @@
 .form_payment{
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 99;
     left: 0;
     top: 0;
     width: 100%;
@@ -1466,3 +1469,29 @@
        display: block;
        float: none;
     }
+  }
+
+  .form_allbuy{
+    z-index: 1;
+    width: 100%;
+    position: fixed;
+    align-items: center;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.4);
+    /* display: none; */
+  }
+  .close_model{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    padding-right: 20px;
+    cursor: pointer;
+  }
+  .hide{
+    display: none !important;
+  }

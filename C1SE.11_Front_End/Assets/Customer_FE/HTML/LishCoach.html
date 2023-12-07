@@ -52,23 +52,23 @@
         <div class="banner_imagelist">
             <img src="../image/Banner/pexels-quý-nguyễn-17177476.jpg" alt="HaNoi">
             <div class="banner_contentlist">
-                <div class="contentlist_welecome">
-                    <p>Welcome to HA NOI</p>
+                <div id="content_list" class="contentlist_welecome">
+                    <p>Welcome to <span id="destination_banner">HA NOI</span></p>
                 </div>
                 <div class="box_inforwelecome">
                     <div class="star_welcome infor_welcome">
                         <img src="../image/Header/placeholder.png" alt="Location_start">
-                        <p>Đà Nẵng</p>
+                        <p id="origin">Đà Nẵng</p>
                     </div>
                     <div class="line_column"></div>
                     <div class="end_welcome infor_welcome">
                         <img src="../image/Header/placeholder.png" alt="Location_end">
-                        <p>Hà Nội</p>
+                        <p id="destination">Hà Nội</p>
                     </div>
                     <div class="line_column" ></div>
                     <div class="schedule_welcome">
                         <img src="../image/Header/calendar.png" alt="Schedule">                        
-                        <p>T5, 23/09/2023</p>
+                        <p id="start_date">T5, 23/09/2023</p>
                     </div>
                 </div>
             </div>
@@ -248,7 +248,7 @@
             </div>
             <div class="width_line">
             </div>
-            <div class="container_coach_partner">
+            <div id="tripList" class="container_coach_partner">
                 <div class="coach_form_buy">
                     <div class="coach_partner">
                         <div class="start_partner_element">
@@ -454,270 +454,6 @@
                         </div>
                         <div class="content" id="evaluateContent">
                             cak3
-                        </div>
-                    </div>
-                    <div class="booking_tickets" id="bookingForm">
-                        <div class="choose_booking">
-                            <div class="title_booking">
-                                <div class="conner_stt" id="position_like" onclick="highlight(this)">
-                                    <div class="form_stt">1</div>
-                                    <p>Chỗ mong muốn</p>
-                                </div>
-                                <div style="width: 70px; height: 1px; background-color: #848181;"></div>
-                                <div class="conner_stt" id="position_on_off" onclick="highlight(this)">
-                                    <div class="form_stt">2</div>
-                                    <p>Điểm đón trả</p>
-                                </div>
-                                <div style="width: 70px; height: 1px; background-color: #848181;"></div>
-    
-                                <div class="conner_stt" id="get_infor" onclick="highlight(this)">
-                                    <div class="form_stt" >3</div>
-                                    <p>Nhập thông tin</p>
-                                </div>
-                            </div>
-                            <div style="height: 1px; width: 90%; box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25); background-color: #E3E3E3; margin-bottom: 30px;"></div>
-                        </div>
-                        <div class="booking_form" id="form_positionlike" style="display: block;">
-                            <div class="form_infor_booking" >
-                                <div class="content_booking">
-                                    <div class="title_chair">
-                                        <p>Chú thích</p>
-                                        <div class="chair_content">
-                                            <div class="image_chair">
-                                                <img src="../image/Content/ListCoach/chair_on.png" alt="">
-                                            </div>
-                                            <div class="infor_chair">
-                                                <span>Ghế trống</span>
-                                                <span>480.000đ</span>
-                                            </div>
-                                        </div>
-                                        <div class="chair_content">
-                                            <div class="image_chair">
-                                                <img src="../image/Content/ListCoach/chair_off.png" alt="">
-                                            </div>
-                                            <div class="infor_chair">
-                                                <span>Ghế đã chọn</span>
-                                                <span></span>
-                                            </div>
-                                        </div>
-                                        <div class="chair_content">
-                                            <div class="image_chair">
-                                                <img src="../image/Content/ListCoach/chair_get.png" alt="">
-                                            </div>
-                                            <div class="infor_chair">
-                                                <span>Ghế đang chọn</span>
-                                                <span></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="position_chair">
-                                        <div class="bed_under">
-                                            <p>Tầng dưới</p>
-                                            <div class="position_under" id="bedUnder">
-                                                <!-- <div class="infor_position">
-                                                    <img style="width: 40px; height: 40px; margin:15px 70px 15px 0px;" src="../image/Content/ListCoach/Diver_vl.png" alt="">
-                                                </div>
-                                                <div class="infor_position">
-                                                    <img src="../image/Content/ListCoach/chair_off.png" alt="">
-                                                    <img src="../image/Content/ListCoach/chair_off.png" alt="">    
-                                                </div>
-                                                <div class="infor_position">
-                                                    <img src="../image/Content/ListCoach/chair_off.png" alt="">
-                                                    <img src="../image/Content/ListCoach/chair_off.png" alt="">    
-                                                </div>
-                                                <div class="infor_position">
-                                                    <img src="../image/Content/ListCoach/chair_get.png" alt="">
-                                                    <img src="../image/Content/ListCoach/chair_get.png" alt="">    
-                                                </div>
-                                                <div class="infor_position">
-                                                    <img src="../image/Content/ListCoach/chair_off.png" alt="">
-                                                    <img src="../image/Content/ListCoach/chair_off.png" alt="">    
-                                                </div> -->
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="bed_under">
-                                            <p>Tầng trên</p>
-                                            <div class="position_upper" id="bedUpper">
-                                                <!-- <div class="infor_position">
-                                                    <img src="../image/Content/ListCoach/chair_off.png" alt="">
-                                                    <img src="../image/Content/ListCoach/chair_off.png" alt="">    
-                                                </div>
-                                                <div class="infor_position">
-                                                    <img src="../image/Content/ListCoach/chair_get.png" alt="">
-                                                    <img src="../image/Content/ListCoach/chair_off.png" alt="">    
-                                                </div>
-                                                <div class="infor_position">
-                                                    <img src="../image/Content/ListCoach/chair_on.png" alt="">
-                                                    <img src="../image/Content/ListCoach/chair_off.png" alt="">    
-                                                </div>
-                                                <div class="infor_position">
-                                                    <img src="../image/Content/ListCoach/chair_on.png" alt="">
-                                                    <img src="../image/Content/ListCoach/chair_on.png" alt="">    
-                                                </div>
-                                                <div class="infor_position">
-                                                    <img src="../image/Content/ListCoach/chair_on.png" alt="">
-                                                    <img src="../image/Content/ListCoach/chair_on.png" alt="">    
-                                                </div> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="line_money">
-                                </div>
-                                <div class="money_booking">
-                                      
-                                    <div class="count_money">
-                                        <div class="display_money">
-                                            <p>Tổng tiền : </p>
-                                            <span class="price_text">0</span>
-                                            <span>đ</span>
-                                        </div>
-                                        <div class="verify_money">
-                                            Tiếp tục
-                                        </div>
-                                    </div>                         
-                                </div>
-                            </div>
-                        </div>
-                        <div class="booking_form" id="form_position_onoff">
-                            <div class="position_main">
-                                <div class="choose_position">
-                                    <div class="position_move">
-                                        <div class="content_position">
-                                            <p>Điểm đón</p>
-                                            <a><i class="ti-location-pin"></i> Chọn điểm xuất phát gần bạn nhất </a>
-                                            <div style="width: 100%; height: 1px; background-color: #fff;"></div>
-                                        </div>
-                                        <div class="container_move">
-                                            <form>
-                                                <label>
-                                                    <input type="radio" name="departure_point" checked="">
-                                                    <span>18h30 : Bến xe trung tâm thành phố</span>
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="departure_point">
-                                                    <span>20h : Huế</span>
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="departure_point">
-                                                    <span>23h : Quảng Trị</span>
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="departure_point">
-                                                    <span>23h : Quảng Bình</span>
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="departure_point">
-                                                    <span>23h : Hà Tĩnh</span>
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="departure_point">
-                                                    <span>23h : Nghệ An</span>
-                                                </label>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="position_move">
-                                        <div class="content_position">
-                                            <p>Điểm xuống</p>
-                                            <a><i class="ti-location-pin"></i> Chọn điểm xuống gần bạn nhất </a>
-                                            <div style="width: 100%; height: 1px; background-color: #fff;"></div>
-                                        </div>
-                                        <div class="container_move">
-                                            <form>
-                                                <label>
-                                                    <input type="radio" name="destination" checked="">
-                                                    <span>18h30 : Bến xe trung tâm thành phố</span>
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="destination">
-                                                    <span>20h : Huế</span>
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="destination">
-                                                    <span>23h : Quảng Trị</span>
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="destination">
-                                                    <span>23h : Quảng Bình</span>
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="destination">
-                                                    <span>23h : Hà Tĩnh</span>
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="destination">
-                                                    <span>23h : Nghệ An</span>
-                                                </label>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="verify_position">
-                                    <div style="width: 100%; height: 1px; background-color: #848181; margin-top: 15px;"></div>
-                                    <div class="btn_move">
-                                        <div class="btn_choose back_btn">
-                                            <p>Trở lại</p>
-                                        </div>
-                                        <div class="total_btn">
-                                            <div class="display_money1">
-                                                <p>Tổng tiền : </p>
-                                                <span class="price_text">0</span>
-                                                <span>đ</span>
-                                            </div>
-                                            <div class="btn_choose next_btn">
-                                                <p>Tiếp tục</p>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <div class="booking_form" id="form_get_infor">
-                            <div class="get_ifTicket">
-                                <div class="input_infor">
-                                    <div class="form_getIF">
-                                        <label for="fname">Họ và tên</label>
-                                        <input type="text" id="fname" name="firstname" placeholder="Họ tên người đặt vé..." value="Customer Name 1">
-                                    </div>
-                                    <div class="form_getIF">
-                                        <label for="fname">Số điện thoại</label>
-                                        <input type="text" id="fsdt" name="sdt" placeholder="Số điện thoại..." value="123-456-7891">
-                                    </div>
-                                    <div class="form_getIF">
-                                        <label for="fname">Email</label>
-                                        <input type="text" id="femail" name="email" placeholder="Email của bạn..." value="user1@example.com">
-                                    </div>
-                                    <div class="ticket_Rules">
-                                        <div style="width: 100%; display: flex; align-items: center; justify-content: center;">
-                                            <input type="checkbox" id="myCheck" onclick="myFunctioncheckbox()"> Tôi đã đọc và đồng ý mọi điều khoản
-                                        </div>
-                                        <p id="text" style="display:none">Đã đồng ý</p>
-                                    </div>
-                               </div>
-                               <div class="verify_position">
-                                <div style="width: 100%; height: 1px; background-color: #848181; margin-top: 15px;"></div>
-                                <div class="btn_move">
-                                    <div class="btn_choose back_btn">
-                                        <p>Trở lại</p>
-                                    </div>
-                                    <div class="total_btn">
-                                        <div class="display_money1">
-                                            <p>Tổng tiền : </p>
-                                            <span class="price_text">0</span>
-                                            <span>đ</span>
-                                        </div>
-                                        <div id="next_payment" class="btn_choose next_btn">
-                                            <p>Tiếp tục</p>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -928,9 +664,9 @@
                 <label for="name">Họ tên khách hàng</label>
                 <input type="text" id="name" name="fullname" disabled value="Customer1">
                 <label for="lname">Điểm đi</label>
-                <input type="text" id="origin" name="lastname" plac disabled>
+                <input type="text" id="origin_" name="lastname" plac disabled>
                 <label for="fname">Điểm đến</label>
-                <input type="text" id="destination" name="firstname" disabled>
+                <input type="text" id="destination_" name="firstname" disabled>
                 <label for="fname">Ngày đặt vé</label>
                 <input type="text" id="booking_date" name="firstname" disabled>
                 <label for="fname">Ngày khởi hành</label>
@@ -1026,6 +762,237 @@
     <!-- ----------------------------------COPYRIGHT----------------------------------- -->
     <div class="copy_right">
         <p>Copyright © 2023 Express Tickets. Powered by Group C1SE.11</p>
+    </div>
+    <!-- ------------------------------------Buy_TicKet-------------------------------------->
+    <div class="form_allbuy  hide">
+        <div class="booking_tickets" id="bookingForm">
+            <div class="close_model">
+                <i class="ti-close"></i>
+            </div>
+            <div class="choose_booking">
+                <div class="title_booking">
+                    <div class="conner_stt" id="position_like" onclick="highlight(this)">
+                        <div class="form_stt">1</div>
+                        <p>Chỗ mong muốn</p>
+                    </div>
+                    <div style="width: 70px; height: 1px; background-color: #848181;"></div>
+                    <div class="conner_stt" id="position_on_off" onclick="highlight(this)">
+                        <div class="form_stt">2</div>
+                        <p>Điểm đón trả</p>
+                    </div>
+                    <div style="width: 70px; height: 1px; background-color: #848181;"></div>
+
+                    <div class="conner_stt" id="get_infor" onclick="highlight(this)">
+                        <div class="form_stt" >3</div>
+                        <p>Nhập thông tin</p>
+                    </div>
+                </div>
+                <div style="height: 1px; width: 90%; box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25); background-color: #E3E3E3; margin-bottom: 30px;"></div>
+            </div>
+            <div class="booking_form" id="form_positionlike" style="display: block;">
+                <div class="form_infor_booking" >
+                    <div class="content_booking">
+                        <div class="title_chair">
+                            <p>Chú thích</p>
+                            <div class="chair_content">
+                                <div class="image_chair">
+                                    <img src="../image/Content/ListCoach/chair_on.png" alt="">
+                                </div>
+                                <div class="infor_chair">
+                                    <span>Ghế trống</span>
+                                    <span>480.000đ</span>
+                                </div>
+                            </div>
+                            <div class="chair_content">
+                                <div class="image_chair">
+                                    <img src="../image/Content/ListCoach/chair_off.png" alt="">
+                                </div>
+                                <div class="infor_chair">
+                                    <span>Ghế đã chọn</span>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="chair_content">
+                                <div class="image_chair">
+                                    <img src="../image/Content/ListCoach/chair_get.png" alt="">
+                                </div>
+                                <div class="infor_chair">
+                                    <span>Ghế đang chọn</span>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="position_chair">
+                            <div class="bed_under">
+                                <p>Tầng dưới</p>
+                                <div class="position_under" id="bedUnder">
+                                </div>
+                                
+                            </div>
+                            <div class="bed_under">
+                                <p>Tầng trên</p>
+                                <div class="position_upper" id="bedUpper">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line_money">
+                    </div>
+                    <div class="money_booking">
+                          
+                        <div class="count_money">
+                            <div class="display_money">
+                                <p>Tổng tiền : </p>
+                                <span class="price_text">0</span>
+                                <span>đ</span>
+                            </div>
+                            <div class="verify_money">
+                                Tiếp tục
+                            </div>
+                        </div>                         
+                    </div>
+                </div>
+            </div>
+            <div class="booking_form" id="form_position_onoff">
+                <div class="position_main">
+                    <div class="choose_position">
+                        <div class="position_move">
+                            <div class="content_position">
+                                <p>Điểm đón</p>
+                                <a><i class="ti-location-pin"></i> Chọn điểm xuất phát gần bạn nhất </a>
+                                <div style="width: 100%; height: 1px; background-color: #fff;"></div>
+                            </div>
+                            <div class="container_move">
+                                <form>
+                                    <label>
+                                        <input type="radio" name="departure_point" checked="">
+                                        <span>18h30 : Bến xe trung tâm thành phố</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="departure_point">
+                                        <span>20h : Huế</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="departure_point">
+                                        <span>23h : Quảng Trị</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="departure_point">
+                                        <span>23h : Quảng Bình</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="departure_point">
+                                        <span>23h : Hà Tĩnh</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="departure_point">
+                                        <span>23h : Nghệ An</span>
+                                    </label>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="position_move">
+                            <div class="content_position">
+                                <p>Điểm xuống</p>
+                                <a><i class="ti-location-pin"></i> Chọn điểm xuống gần bạn nhất </a>
+                                <div style="width: 100%; height: 1px; background-color: #fff;"></div>
+                            </div>
+                            <div class="container_move">
+                                <form>
+                                    <label>
+                                        <input type="radio" name="destination" checked="">
+                                        <span>18h30 : Bến xe trung tâm thành phố</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="destination">
+                                        <span>20h : Huế</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="destination">
+                                        <span>23h : Quảng Trị</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="destination">
+                                        <span>23h : Quảng Bình</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="destination">
+                                        <span>23h : Hà Tĩnh</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="destination">
+                                        <span>23h : Nghệ An</span>
+                                    </label>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verify_position">
+                        <div style="width: 100%; height: 1px; background-color: #848181; margin-top: 15px;"></div>
+                        <div class="btn_move">
+                            <div class="btn_choose back_btn">
+                                <p>Trở lại</p>
+                            </div>
+                            <div class="total_btn">
+                                <div class="display_money1">
+                                    <p>Tổng tiền : </p>
+                                    <span class="price_text">0</span>
+                                    <span>đ</span>
+                                </div>
+                                <div class="btn_choose next_btn">
+                                    <p>Tiếp tục</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="booking_form" id="form_get_infor">
+                <div class="get_ifTicket">
+                    <div class="input_infor">
+                        <div class="form_getIF">
+                            <label for="fname">Họ và tên</label>
+                            <input type="text" id="fname" name="firstname" placeholder="Họ tên người đặt vé..." value="Customer Name 1">
+                        </div>
+                        <div class="form_getIF">
+                            <label for="fname">Số điện thoại</label>
+                            <input type="text" id="fsdt" name="sdt" placeholder="Số điện thoại..." value="123-456-7891">
+                        </div>
+                        <div class="form_getIF">
+                            <label for="fname">Email</label>
+                            <input type="text" id="femail" name="email" placeholder="Email của bạn..." value="user1@example.com">
+                        </div>
+                        <div class="ticket_Rules">
+                            <div style="width: 100%; display: flex; align-items: center; justify-content: center;">
+                                <input type="checkbox" id="myCheck" onclick="myFunctioncheckbox()"> Tôi đã đọc và đồng ý mọi điều khoản
+                            </div>
+                            <p id="text" style="display:none">Đã đồng ý</p>
+                        </div>
+                   </div>
+                   <div class="verify_position">
+                    <div style="width: 100%; height: 1px; background-color: #848181; margin-top: 15px;"></div>
+                    <div class="btn_move">
+                        <div class="btn_choose back_btn">
+                            <p>Trở lại</p>
+                        </div>
+                        <div class="total_btn">
+                            <div class="display_money1">
+                                <p>Tổng tiền : </p>
+                                <span class="price_text">0</span>
+                                <span>đ</span>
+                            </div>
+                            <div id="next_payment" class="btn_choose next_btn">
+                                <p>Tiếp tục</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js"></script>
