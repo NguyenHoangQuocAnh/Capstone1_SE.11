@@ -44,7 +44,7 @@ class TicketController {
       );
       res.send({
         status: 200,
-        ...response,
+        response,
       });
     } catch (e) {
       res.send({

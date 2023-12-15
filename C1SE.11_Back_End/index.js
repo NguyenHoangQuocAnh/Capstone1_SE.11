@@ -7,6 +7,14 @@ const multer = require('multer')
 const upload = multer({dest: 'upload/'});
 var bodyParser = require('body-parser');
 const app = express()
+var admin = require("firebase-admin");
+
+var serviceAccount = require("./serviceAccountKey.json");
+
+
+
+const { initializeApp } = require("firebase-admin/app");
+
 
 app.use(cors())
 app.use(bodyParser.json());
@@ -33,16 +41,14 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_SECRET_KEY
 });
 
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+  });
+
 const port = process.env.PORT || 3000
 
 const route = require('./routes/')
   
-// app.get('/hello', (req, res)=>{ 
-//     res.set('Content-Type', 'text/html'); 
-//     res.status(200).send({
-//         "message": "hello wỏld"
-//     }); 
-// }); 
 
 route(app);
   

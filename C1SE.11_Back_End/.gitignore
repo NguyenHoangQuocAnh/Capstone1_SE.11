@@ -6,3 +6,6 @@
 
 # evironment
 /.env
+
+# db config
+/config/db/index.js

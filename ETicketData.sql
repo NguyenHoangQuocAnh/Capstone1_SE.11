@@ -163,3 +163,4 @@ CREATE TABLE Seats (
 
 CREATE UNIQUE INDEX Seats_seat_number_coach_id_unique
 ON Seats(seat_number, coach_id);
+select * from Tickets

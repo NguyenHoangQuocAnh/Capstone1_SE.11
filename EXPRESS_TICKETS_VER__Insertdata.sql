@@ -41,15 +41,16 @@ INSERT INTO Licenses (license_id, image_front, image_behind, image_width, image_
 VALUES
     ('License1', 0x012345, 0x6789AB, 800, 600, 'JPEG'),
     ('License2', 0xCDEF01, 0x234567, 1024, 768, 'PNG');
+select * from Licenses
 
-INSERT INTO Drivers (driver_id, user_id_, image_avatar, full_name, birthday, address_, literacy, license_id, partner_id, phone_number, status_)
+INSERT INTO Drivers (driver_id, user_id_, image_avatar, full_name, birthday, address_, literacy, license_id, partner_id, phone_number,point, status_)
 VALUES	
-	('Driver1','User2','',N'Hoàng Chí Cường','1987-12-01 00:00:00',N'Đồng Nai','12/12','License1','Partner1','0534563216',1),
-	('Driver2','User11','',N'Trân Công Sơn','1990-12-01 00:00:00',N'Hải Phòng','12/12','License2','Partner1','0984654354',1),
-	('Driver3','User12','',N'Hoàng Văn Thái','1991-12-01 00:00:00',N'Nghệ An','12/12','License1','Partner2','0985656844',1),
-	('Driver4','User13','',N'Châu Chí Nam','1985-12-01 00:00:00',N'Hà Tĩnh','12/12','License2','Partner2','0986466965',1);
+	('Driver1','User2','',N'Hoàng Chí Cường','1987-12-01 00:00:00',N'Đồng Nai','12/12','License1','Partner1','0534563216',4.1,1),
+	('Driver2','User11','',N'Trân Công Sơn','1990-12-01 00:00:00',N'Hải Phòng','12/12','License2','Partner1','0984654354',4.1,1),
+	('Driver3','User12','',N'Hoàng Văn Thái','1991-12-01 00:00:00',N'Nghệ An','12/12','License1','Partner2','0985656844',4.1,1),
+	('Driver4','User13','',N'Châu Chí Nam','1985-12-01 00:00:00',N'Hà Tĩnh','12/12','License2','Partner2','0986466965',4.2,1);
 
---Import data Staffs 
+	--Import data Staffs 
 INSERT INTO Staffs (staff_id, user_id_, partner_id, image_avatar, full_name, phone_number)
 VALUES 
 	('Staff1', 'User4', 'Partner1', '', N'Nguyễn Thị Thu Ngân', '096584965'),
@@ -60,7 +61,8 @@ VALUES
 	('Coach1','https://res.cloudinary.com/dkbovfajo/image/upload/v1700134154/Xe/pnzi6h5bzx8ni0fzqb3t.jpg','43K1-56211',40,N'Thường','Driver1','Partner1',1),
 	('Coach2','https://res.cloudinary.com/dkbovfajo/image/upload/v1701042183/Xe/qg1coc7tys8eza6pymro.jpg','38K1-22388',40,N'Thường','Driver2','Partner1',1),
 	('Coach3','https://res.cloudinary.com/dkbovfajo/image/upload/v1701042208/Xe/jefah8q4bqix3gefjoyx.jpg','73H1-56211',40,N'Thường','Driver3','Partner2',1);
-
+update Coaches
+set coach_name = N'Xuân Quỳnh' where coach_id = 'Coach3'
 --Import data Citys
 INSERT INTO Citys (city_id, name_city, image_avatar)
 VALUES
@@ -124,122 +126,29 @@ VALUES
 	('58', N'Cần Thơ', '');
 
 --Import data Trips
-INSERT INTO Trips (trip_id, trip_name, origin, destination, distance, duration, departure_date, number_of_ticket, price_trip)
+INSERT INTO Trips (trip_id, coach_id, trip_name, origin, destination, distance, duration, departure_date,number_of_ticket, price_trip,arrival_datetime,intend_date)
 VALUES
-    ('Trip1', N'Hoàng Long', N'Đà Nẵng', N'Hà Tĩnh', 500, 360, '2023-12-10 07:30:00',40,300000),
-    ('Trip2', N'Hiếu Hoa', N'Đà Nẵng', N'Hà Tĩnh', 500, 360, '2023-12-10 21:30:00',40,350000),
-    ('Trip3', N'Xuân Quỳnh', N'Hà Nội', N'Huế', 200, 2880, '2023-12-10 21:30:00',40,150000);
+    ('Trip1','Coach1', N'Hoàng Long', N'Đà Nẵng', N'Hà Tĩnh', 500, 360, '2023-12-10 07:30:00',40,300000,'2023-12-10 14:30:00','2023-12-10 14:30:00'),
+    ('Trip2','Coach2', N'Hiếu Hoa', N'Đà Nẵng', N'Hà Tĩnh', 500, 360, '2023-12-10 21:30:00',40,350000,'2023-12-10 14:30:00','2023-12-10 14:30:00'),
+    ('Trip3','Coach3', N'Xuân Quỳnh', N'Hà Nội', N'Huế', 200, 2880, '2023-12-10 21:30:00',40,150000,'2023-12-10 14:30:00','2023-12-10 14:30:00');
 select * from Trips
 
-INSERT INTO List_visits (numerical_order, city_id, note, trip_id)
-VALUES
-    (1, '31', 'Visit Note', 'Trip1'),
-    (2, '30', 'Visit Note', 'Trip1'),
-	(3, '29', 'Visit Note', 'Trip1'),
-	(4, '28', 'Visit Note', 'Trip1'),
-	(5, '27', 'Visit Note', 'Trip1'),
-	(6, '26', 'Visit Note', 'Trip2'),
-	(1, '26', 'Visit Note', 'Trip2'),
-    (2, '27', 'Visit Note', 'Trip2'),
-	(3, '28', 'Visit Note', 'Trip2'),
-	(4, '29', 'Visit Note', 'Trip2'),
-	(5, '30', 'Visit Note', 'Trip2'),
-	(6, '31', 'Visit Note', 'Trip2'),
-    (1, '49', 'Visit Note', 'Trip3'),
-    (2, '47', 'Visit Note', 'Trip3'),
-    (3, '38', 'Visit Note', 'Trip3'),
-    (4, '37', 'Visit Note', 'Trip3'),
-    (5, '36', 'Visit Note', 'Trip3'),
-    (6, '35', 'Visit Note', 'Trip3'),
-    (7, '34', 'Visit Note', 'Trip3'),
-    (8, '33', 'Visit Note', 'Trip3'),
-    (9, '32', 'Visit Note', 'Trip3'),
-    (10, '31', 'Visit Note', 'Trip3'),
-    (11, '30', 'Visit Note', 'Trip3'),
-    (12, '29', 'Visit Note', 'Trip3'),
-    (13, '28', 'Visit Note', 'Trip3'),
-    (14, '27', 'Visit Note', 'Trip3'),
-    (15, '26', 'Visit Note', 'Trip3'),
-    (16, '25', 'Visit Note', 'Trip3'),
-    (17, '24', 'Visit Note', 'Trip3'),
-    (18, '17', 'Visit Note', 'Trip3'),
-    (19, '01', 'Visit Note', 'Trip3');
-
-
---seeding seat
-INSERT INTO Seats (seat_id, seat_number, seat_status,decker, coach_id)
-VALUES
-('Seat1', 'A1', 1, '1', 'Coach1'),
-('Seat2', 'A2', 1, '1', 'Coach1'),
-('Seat3', 'A3', 1, '1', 'Coach1'),
-('Seat4', 'A4', 1, '1', 'Coach1'),
-('Seat5', 'A5', 1, '1', 'Coach1'),
-('Seat6', 'A6', 1, '1', 'Coach1'),
-('Seat7', 'B1', 1, '1', 'Coach1'),
-('Seat8', 'B2', 1, '1', 'Coach1'),
-('Seat9', 'B3', 1, '1', 'Coach1'),
-('Seat10', 'B4', 1, '1', 'Coach1'),
-('Seat11', 'B5', 1, '1', 'Coach1'),
-('Seat12', 'B6', 1, '1', 'Coach1'),
-('Seat13', 'C1', 1, '1', 'Coach1'),
-('Seat14', 'C2', 1, '1', 'Coach1'),
-('Seat15', 'C3', 1, '1', 'Coach1'),
-('Seat16', 'C4', 1, '1', 'Coach1'),
-('Seat17', 'C5', 1, '1', 'Coach1'),
-('Seat18', 'C6', 1, '1', 'Coach1'),
-('Seat19', 'D1', 1, '2', 'Coach1'),
-('Seat20', 'D2', 1, '2', 'Coach1'),
-('Seat21', 'D3', 1, '2', 'Coach1'),
-('Seat22', 'D4', 1, '2', 'Coach1'),
-('Seat23', 'D5', 1, '2', 'Coach1'),
-('Seat24', 'D6', 1, '2', 'Coach1'),
-('Seat25', 'E1', 1, '2', 'Coach1'),
-('Seat26', 'E2', 1, '2', 'Coach1'),
-('Seat27', 'E3', 1, '2', 'Coach1'),
-('Seat28', 'E4', 1, '2', 'Coach1'),
-('Seat29', 'E5', 1, '2', 'Coach1'),
-('Seat30', 'E6', 1, '2', 'Coach1'),
-('Seat31', 'F1', 1, '2', 'Coach1'),
-('Seat32', 'F2', 1, '2', 'Coach1'),
-('Seat33', 'F3', 1, '2', 'Coach1'),
-('Seat34', 'F4', 1, '2', 'Coach1'),
-('Seat35', 'F5', 1, '2', 'Coach1'),
-('Seat36', 'F6', 1, '2', 'Coach1'),
-('Seat37', 'A1', 1, '1', 'Coach2'),
-('Seat38', 'A2', 1, '1', 'Coach2'),
-('Seat39', 'A3', 1, '1', 'Coach2'),
-('Seat40', 'A4', 1, '1', 'Coach2'),
-('Seat41', 'A5', 1, '1', 'Coach2'),
-('Seat42', 'A6', 1, '1', 'Coach2'),
-('Seat43', 'B1', 1, '1', 'Coach2'),
-('Seat44', 'B2', 1, '1', 'Coach2'),
-('Seat45', 'B3', 1, '1', 'Coach2'),
-('Seat46', 'B4', 1, '1', 'Coach2'),
-('Seat47', 'B5', 1, '1', 'Coach2'),
-('Seat48', 'B6', 1, '1', 'Coach2'),
-('Seat49', 'C1', 1, '1', 'Coach2'),
-('Seat50', 'C2', 1, '1', 'Coach2'),
-('Seat51', 'C3', 1, '1', 'Coach2'),
-('Seat52', 'C4', 1, '1', 'Coach2'),
-('Seat53', 'C5', 1, '1', 'Coach2'),
-('Seat54', 'C6', 1, '1', 'Coach2'),
-('Seat55', 'D1', 1, '2', 'Coach2'),
-('Seat56', 'D2', 1, '2', 'Coach2'),
-('Seat57', 'D3', 1, '2', 'Coach2'),
-('Seat58', 'D4', 1, '2', 'Coach2'),
-('Seat59', 'D5', 1, '2', 'Coach2'),
-('Seat60', 'D6', 1, '2', 'Coach2'),
-('Seat61', 'E1', 1, '2', 'Coach2'),
-('Seat62', 'E2', 1, '2', 'Coach2'),
-('Seat63', 'E3', 1, '2', 'Coach2'),
-('Seat64', 'E4', 1, '2', 'Coach2'),
-('Seat65', 'E5', 1, '2', 'Coach2'),
-('Seat66', 'E6', 1, '2', 'Coach2'),
-('Seat67', 'F1', 1, '2', 'Coach2'),
-('Seat68', 'F2', 1, '2', 'Coach2'),
-('Seat69', 'F3', 1, '2', 'Coach2'),
-('Seat70', 'F4', 1, '2', 'Coach2'),
-('Seat71', 'F5', 1, '2', 'Coach2'),
-('Seat72', 'F6', 1, '2', 'Coach2');
-
+select
+                Trips.trip_id,
+                Trips.trip_name,
+                Trips.origin,
+                Trips.destination,
+                FORMAT(Trips.arrival_datetime, 'yyyy-MM-dd HH:mm') as arrival_datetime,
+                FORMAT(Trips.departure_date, 'yyyy-MM-dd HH:mm') as departure_date,
+                Trips.number_of_ticket,
+                Trips.price_trip,
+                Coaches.*
+            from Trips, Coaches
+            WHERE Trips.coach_id = Coaches.coach_id
+            and
+                (DATEPART(yy, Trips.departure_date) = 2023
+                AND    DATEPART(mm, Trips.departure_date) = 12
+                AND    DATEPART(dd, Trips.departure_date) = 10)
+                AND Trips.origin  = N'Đà Nẵng'
+                AND Trips.destination = N'Hà Tĩnh'
 
