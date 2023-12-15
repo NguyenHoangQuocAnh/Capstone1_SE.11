@@ -8,11 +8,11 @@ dotenv.config();
 const MSSQLpool = new mssql.ConnectionPool({
   server: process.env.MSSQL_SERVER_NAME,
   database: process.env.MSSQL_DATABASE_NAME,
-  user: process.env.MSSQL_DATABASE_USERNAME,
-  password: process.env.MSSQL_DATABASE_PASSWORD,
+  // user: process.env.MSSQL_DATABASE_USERNAME,
+  // password: process.env.MSSQL_DATABASE_PASSWORD,
   driver: 'msnodesqlv8',
   options: {
-    trustedConnection: false,
+    trustedConnection: true,
   },
 });
 
