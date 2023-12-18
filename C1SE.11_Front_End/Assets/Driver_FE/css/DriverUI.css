@@ -388,11 +388,12 @@ html
 
 .content .Bus .Seats
 {
-    margin-left: 10px;
+    /*margin-left: 10px;*/
+    justify-items: center;
     width: 220px;
     height: 400px;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto;
     padding: 10px;
     column-gap: 20px;
     row-gap: 5px;

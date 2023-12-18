@@ -131,7 +131,10 @@ VALUES
     ('Trip1','Coach1', N'Hoàng Long', N'Đà Nẵng', N'Hà Tĩnh', 500, 360, '2023-12-10 07:30:00',40,300000,'2023-12-10 14:30:00','2023-12-10 14:30:00'),
     ('Trip2','Coach2', N'Hiếu Hoa', N'Đà Nẵng', N'Hà Tĩnh', 500, 360, '2023-12-10 21:30:00',40,350000,'2023-12-10 14:30:00','2023-12-10 14:30:00'),
     ('Trip3','Coach3', N'Xuân Quỳnh', N'Hà Nội', N'Huế', 200, 2880, '2023-12-10 21:30:00',40,150000,'2023-12-10 14:30:00','2023-12-10 14:30:00');
-select * from Trips
+
+
+
+select * from Trips;
 
 select
                 Trips.trip_id,
@@ -150,5 +153,82 @@ select
                 AND    DATEPART(mm, Trips.departure_date) = 12
                 AND    DATEPART(dd, Trips.departure_date) = 10)
                 AND Trips.origin  = N'Đà Nẵng'
-                AND Trips.destination = N'Hà Tĩnh'
+                AND Trips.destination = N'Hà Tĩnh';
+
+
+--seeding seat
+INSERT INTO Seats (seat_id, seat_number, seat_status,decker, coach_id)
+VALUES
+('Seat1', 'A1', 1, '1', 'Coach1'),
+('Seat2', 'A2', 1, '1', 'Coach1'),
+('Seat3', 'A3', 1, '1', 'Coach1'),
+('Seat4', 'A4', 1, '1', 'Coach1'),
+('Seat5', 'A5', 1, '1', 'Coach1'),
+('Seat6', 'A6', 1, '1', 'Coach1'),
+('Seat7', 'B1', 1, '1', 'Coach1'),
+('Seat8', 'B2', 1, '1', 'Coach1'),
+('Seat9', 'B3', 1, '1', 'Coach1'),
+('Seat10', 'B4', 1, '1', 'Coach1'),
+('Seat11', 'B5', 1, '1', 'Coach1'),
+('Seat12', 'B6', 1, '1', 'Coach1'),
+('Seat13', 'C1', 1, '1', 'Coach1'),
+('Seat14', 'C2', 1, '1', 'Coach1'),
+('Seat15', 'C3', 1, '1', 'Coach1'),
+('Seat16', 'C4', 1, '1', 'Coach1'),
+('Seat17', 'C5', 1, '1', 'Coach1'),
+('Seat18', 'C6', 1, '1', 'Coach1'),
+('Seat19', 'D1', 1, '2', 'Coach1'),
+('Seat20', 'D2', 1, '2', 'Coach1'),
+('Seat21', 'D3', 1, '2', 'Coach1'),
+('Seat22', 'D4', 1, '2', 'Coach1'),
+('Seat23', 'D5', 1, '2', 'Coach1'),
+('Seat24', 'D6', 1, '2', 'Coach1'),
+('Seat25', 'E1', 1, '2', 'Coach1'),
+('Seat26', 'E2', 1, '2', 'Coach1'),
+('Seat27', 'E3', 1, '2', 'Coach1'),
+('Seat28', 'E4', 1, '2', 'Coach1'),
+('Seat29', 'E5', 1, '2', 'Coach1'),
+('Seat30', 'E6', 1, '2', 'Coach1'),
+('Seat31', 'F1', 1, '2', 'Coach1'),
+('Seat32', 'F2', 1, '2', 'Coach1'),
+('Seat33', 'F3', 1, '2', 'Coach1'),
+('Seat34', 'F4', 1, '2', 'Coach1'),
+('Seat35', 'F5', 1, '2', 'Coach1'),
+('Seat36', 'F6', 1, '2', 'Coach1'),
+('Seat37', 'A1', 1, '1', 'Coach2'),
+('Seat38', 'A2', 1, '1', 'Coach2'),
+('Seat39', 'A3', 1, '1', 'Coach2'),
+('Seat40', 'A4', 1, '1', 'Coach2'),
+('Seat41', 'A5', 1, '1', 'Coach2'),
+('Seat42', 'A6', 1, '1', 'Coach2'),
+('Seat43', 'B1', 1, '1', 'Coach2'),
+('Seat44', 'B2', 1, '1', 'Coach2'),
+('Seat45', 'B3', 1, '1', 'Coach2'),
+('Seat46', 'B4', 1, '1', 'Coach2'),
+('Seat47', 'B5', 1, '1', 'Coach2'),
+('Seat48', 'B6', 1, '1', 'Coach2'),
+('Seat49', 'C1', 1, '1', 'Coach2'),
+('Seat50', 'C2', 1, '1', 'Coach2'),
+('Seat51', 'C3', 1, '1', 'Coach2'),
+('Seat52', 'C4', 1, '1', 'Coach2'),
+('Seat53', 'C5', 1, '1', 'Coach2'),
+('Seat54', 'C6', 1, '1', 'Coach2'),
+('Seat55', 'D1', 1, '2', 'Coach2'),
+('Seat56', 'D2', 1, '2', 'Coach2'),
+('Seat57', 'D3', 1, '2', 'Coach2'),
+('Seat58', 'D4', 1, '2', 'Coach2'),
+('Seat59', 'D5', 1, '2', 'Coach2'),
+('Seat60', 'D6', 1, '2', 'Coach2'),
+('Seat61', 'E1', 1, '2', 'Coach2'),
+('Seat62', 'E2', 1, '2', 'Coach2'),
+('Seat63', 'E3', 1, '2', 'Coach2'),
+('Seat64', 'E4', 1, '2', 'Coach2'),
+('Seat65', 'E5', 1, '2', 'Coach2'),
+('Seat66', 'E6', 1, '2', 'Coach2'),
+('Seat67', 'F1', 1, '2', 'Coach2'),
+('Seat68', 'F2', 1, '2', 'Coach2'),
+('Seat69', 'F3', 1, '2', 'Coach2'),
+('Seat70', 'F4', 1, '2', 'Coach2'),
+('Seat71', 'F5', 1, '2', 'Coach2'),
+('Seat72', 'F6', 1, '2', 'Coach2');
 

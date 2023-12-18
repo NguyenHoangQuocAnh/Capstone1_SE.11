@@ -359,4 +359,22 @@ BEGIN
 END;
 GO
 
-insert into Customers(customer_id,user_id_, full_name, phone_number) values ('','','','')
+--Bảng thông báo
+CREATE TABLE Notifications (
+	notification_id INT IDENTITY(1,1) PRIMARY KEY,
+	notification_type SMALLINT NOT NULL default 1,
+	notification_content NVARCHAR(1000) NOT NULL,
+    notification_status SMALLINT NOT NULL default 1
+)
+GO
+--Tạo bảng Seats chứa các thuộc tính 
+CREATE TABLE Seats (
+	seat_id VARCHAR(50) PRIMARY KEY,
+	seat_number VARCHAR(5) NOT NULL,
+	seat_status tinyint NOT NULL default 1, --1 Ghế chưa ai đặt, 2 Ghế có người đặt, 3 Ghế đã có người đặt, 4 Hành khách chuẩn bị xuống xe
+    decker VARCHAR(2) NOT NULL, -- tầng ghế
+	coach_id VARCHAR(50) FOREIGN KEY (coach_id) REFERENCES  Coaches(coach_id)
+)
+GO
+CREATE UNIQUE INDEX Seats_seat_number_coach_id_unique
+ON Seats(seat_number, coach_id);

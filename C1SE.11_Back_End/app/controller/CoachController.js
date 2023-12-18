@@ -56,7 +56,7 @@ class CoachController {
     }
     sql += ` order by seat_number_numeric, seat_letter;`;
 
-    const sql2 = `select *from Tickets where coach_id = '${coach_id}'`;
+    const sql2 = `select *from Tickets`;
 
     try {
       const [seatsResult, ticketsResult] = await Promise.all([
@@ -67,7 +67,7 @@ class CoachController {
       const data = seatsResult.recordset.map((el) => {
         el.ticket = null;
         const ticket = tickets.find(
-          (t) => t.coach_id === el.coach_id && t.seat_number === el.seat_number
+          (t) => t.seat_number === el.seat_number
         );
         if (ticket) {
           el.ticket = ticket;
@@ -88,9 +88,12 @@ class CoachController {
   }
   async setSeatStatus(data) {
     const { coach_id, seat_number, seat_status } = data;
+    console.log(data)
     let sql = `update Seats set seat_status = ${seat_status} where coach_id = '${coach_id}' and seat_number='${seat_number}'`;
     try {
+      console.log(sql)
       const result = await db.query(sql);
+
       //giả lập hành khách xuống CHUẨN BỊ xuống xe sau 40s và XUỐNG xe sau 55s
       if (seat_status === 3) {
         this.mockChangeSeatStatus(db, { coach_id, seat_number });
