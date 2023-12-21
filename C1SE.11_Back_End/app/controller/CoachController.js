@@ -66,9 +66,7 @@ class CoachController {
       const tickets = ticketsResult.recordset;
       const data = seatsResult.recordset.map((el) => {
         el.ticket = null;
-        const ticket = tickets.find(
-          (t) => t.seat_number === el.seat_number
-        );
+        const ticket = tickets.find((t) => t.seat_number === el.seat_number);
         if (ticket) {
           el.ticket = ticket;
         }
@@ -88,10 +86,10 @@ class CoachController {
   }
   async setSeatStatus(data) {
     const { coach_id, seat_number, seat_status } = data;
-    console.log(data)
+    console.log(data);
     let sql = `update Seats set seat_status = ${seat_status} where coach_id = '${coach_id}' and seat_number='${seat_number}'`;
     try {
-      console.log(sql)
+      console.log(sql);
       const result = await db.query(sql);
 
       //giả lập hành khách xuống CHUẨN BỊ xuống xe sau 40s và XUỐNG xe sau 55s
@@ -123,7 +121,8 @@ class CoachController {
     /**giả lập hành khách chuẩn bị xuống xe sau 55s(từ lúc lên xe) */
     setTimeout(async () => {
       let sql = `update Seats set seat_status = 1 where coach_id = '${coach_id}' and seat_number='${seat_number}'`;
-      await db.query(sql);
+      //let dlSql = `delete from tickets where seat_number='${seat_number}'`;
+      await Promise.all[db.query(sql)];
     }, 55000);
   }
   async getTiketsInCoach(coach_id) {
@@ -177,8 +176,8 @@ class CoachController {
     }
   }
 
-    async getCoachAndTiketById2( trip_id) {
-        const sql =  `
+  async getCoachAndTiketById2(trip_id) {
+    const sql = `
             select Tickets.*
 		    from Tickets
 		    WHERE Tickets.trip_id = '${trip_id}'
