@@ -1,3 +1,5 @@
+
+
 window.addEventListener('scroll', () => {
     const content = document.querySelector('.content'); // Chọn thẻ div có class là "content"
     const scrollY = window.scrollY;
@@ -8,6 +10,7 @@ window.addEventListener('scroll', () => {
         content.classList.remove('scrolled');
     }
 }); 
+
 
 //--Hiển thị list location start_end
 const searchLocationStart = document.getElementById('start');
@@ -138,7 +141,17 @@ const searchButton = document.getElementById('searchButton');
 // Gắn sự kiện khi nút tìm kiếm được click
 searchButton.addEventListener('click', () => {
     // Chuyển qua trang index.html
-    window.location.href = 'LishCoach.html';
+    let start_date = document.getElementById('birthday').value
+    let origin = document.getElementById('searchInput').value
+    let destination = document.getElementById('searchInput1').value
+
+    console.log({
+        start_date,
+        origin,
+        destination
+    })
+
+    window.location.href = `LishCoach.html?start_date=${start_date}&origin=${origin}&destination=${destination}`;
 });
 
 // Lấy thứ của ngày hiện tại

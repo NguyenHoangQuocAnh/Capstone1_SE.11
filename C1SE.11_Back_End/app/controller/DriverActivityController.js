@@ -5,7 +5,7 @@ const db = require('../../config/db').MSSQLpool;
 async function getCustomer(req, res) {
   const { limit = 10, page = 1 } = req.query;
 
-  let sql = `select t1.*, t2.seat_status from Tickets t1 left join Seats t2 on t1.seat_number = t2.seat_number and t1.coach_id = t2.coach_id
+  let sql = `select t1.*, t2.seat_status from Tickets t1 left join Seats t2 on t1.seat_number = t2.seat_number
   order by t1.ticket_id offset ${
     limit * (page - 1)
   } rows fetch next ${limit} rows only`;
@@ -61,12 +61,12 @@ async function getCustomer(req, res) {
 async function getCustomerBoarded(req, res) {
   const { limit = 10, page = 1 } = req.query;
 
-  let sql = `select t1.*, t2.seat_status from Tickets t1 left join Seats t2 on t1.seat_number = t2.seat_number and t1.coach_id = t2.coach_id
+  let sql = `select t1.*, t2.seat_status from Tickets t1 left join Seats t2 on t1.seat_number = t2.seat_number
     where t2.seat_status = 3 -- ghế đã có người ngồi nghĩa là hành khách đã lên xe
     order by t1.ticket_id offset ${
       limit * (page - 1)
     } rows fetch next ${limit} rows only`;
-  let countSql = `select count(t1.ticket_id) from Tickets t1 left join Seats t2 on t1.seat_number = t2.seat_number and t1.coach_id = t2.coach_id
+  let countSql = `select count(t1.ticket_id) from Tickets t1 left join Seats t2 on t1.seat_number = t2.seat_number
     where t2.seat_status = 3`;
   try {
     const [dataResult, countResult] = await Promise.all([

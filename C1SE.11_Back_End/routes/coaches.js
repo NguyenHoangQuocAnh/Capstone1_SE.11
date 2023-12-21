@@ -19,7 +19,7 @@ router.get('/:id/seats', async (req, res) => {
   
 router.put('/:id/seats/status', async (req, res) => {
     const { id } = req.params;
-    const { seat_number, seat_status } = req.body;
+    const { seat_number, seat_status } = JSON.parse(req.body);
     const result = await CoachController.setSeatStatus({
       coach_id: id,
       seat_number,

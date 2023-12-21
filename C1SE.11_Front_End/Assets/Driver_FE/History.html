@@ -129,6 +129,7 @@
         fetch(apiUrl)
           .then((response) => response.json())
           .then((data) => {
+            console.log(data)
             params.success({
               total: data.meta.pagination.total,
               rows: data.data,

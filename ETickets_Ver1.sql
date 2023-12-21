@@ -1,5 +1,4 @@
-﻿	
-CREATE DATABASE EXPRESS_TICKETS_VER1;
+﻿CREATE DATABASE EXPRESS_TICKETS_VER1;
 USE EXPRESS_TICKETS_VER1
 
 --Tạo bảng Users chứa các thuộc tính user_id, username, password, email, role, face_recognition_data
@@ -142,25 +141,3 @@ CREATE TABLE Payments (
     amount FLOAT NOT NULL,
     payment_method NVARCHAR(50) NOT NULL
 );
-
---Bảng thông báo
-CREATE TABLE Notifications (
-	notification_id INT IDENTITY(1,1) PRIMARY KEY,
-	notification_type SMALLINT NOT NULL default 1,
-	notification_content NVARCHAR(1000) NOT NULL,
-    notification_status SMALLINT NOT NULL default 1
-);
-
---Tạo bảng Seats chứa các thuộc tính 
-
-CREATE TABLE Seats (
-	seat_id VARCHAR(20) PRIMARY KEY,
-	seat_number VARCHAR(5) NOT NULL,
-	seat_status tinyint NOT NULL default 1, --1 Ghế chưa ai đặt, 2 Ghế có người đặt, 3 Ghế đã có người đặt, 4 Hành khách chuẩn bị xuống xe
-    decker VARCHAR(2) NOT NULL, -- tầng ghế
-	coach_id VARCHAR(20) FOREIGN KEY (coach_id) REFERENCES  Coaches(coach_id)
-);
-
-CREATE UNIQUE INDEX Seats_seat_number_coach_id_unique
-ON Seats(seat_number, coach_id);
-select * from Tickets

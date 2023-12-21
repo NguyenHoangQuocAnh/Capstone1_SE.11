@@ -16,7 +16,7 @@ router.get('/getTicket/:id', async (req, res) => {
   TicketController.getTicket(req, res);
 });
 router.post('/storeTicket', multer().none(), async (req, res) => {
-  TicketController.storeTicket(req, res);
+  TicketController.storeTicket(req, res); 
 });
 
 router.post('/generateTicket', multer().none(), async (req, res) => {
