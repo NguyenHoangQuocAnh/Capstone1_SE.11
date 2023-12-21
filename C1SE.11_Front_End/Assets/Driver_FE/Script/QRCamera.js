@@ -103,12 +103,13 @@ startCameraButton.addEventListener('click', async () => {
               const seat_number = data.data.recordset[0].seat_number;
               const coach_id = data.data.recordset[0].coach_id;
               fetchSetSeatStatusData(coach_id, seat_number, 3);
+              location.reload();
             })
             .catch((err) => {
               console.error('Error fetching data:', err);
             });
           // open url in new tab
-          setTimeout(window.open(result.text, '_blank'), 500);
+          //setTimeout(window.open(result.text, '_blank'), 500);
           // close camera
           setTimeout(() => {
             if (stream) {
