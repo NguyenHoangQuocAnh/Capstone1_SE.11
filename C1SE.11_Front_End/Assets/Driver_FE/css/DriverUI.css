@@ -393,7 +393,7 @@ html
     width: 220px;
     height: 400px;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto auto;
     padding: 10px;
     column-gap: 20px;
     row-gap: 5px;
