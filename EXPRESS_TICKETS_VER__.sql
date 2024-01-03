@@ -371,7 +371,7 @@ GO
 CREATE TABLE Seats (
 	seat_id VARCHAR(50) PRIMARY KEY,
 	seat_number VARCHAR(5) NOT NULL,
-	seat_status tinyint NOT NULL default 1, --1 Ghế chưa ai đặt, 2 Ghế có người đặt, 3 Ghế đã có người đặt, 4 Hành khách chuẩn bị xuống xe
+	seat_status tinyint NOT NULL default 1, --1 Ghế chưa ai đặt, 2 Ghế có người đặt, 3 Ghế đã có người ngồi, 4 Hành khách chuẩn bị xuống xe
     decker VARCHAR(2) NOT NULL, -- tầng ghế
 	coach_id VARCHAR(50) FOREIGN KEY (coach_id) REFERENCES  Coaches(coach_id)
 )
